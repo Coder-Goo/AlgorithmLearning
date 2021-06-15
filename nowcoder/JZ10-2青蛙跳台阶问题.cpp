@@ -1,3 +1,6 @@
+#include<vector>
+using namespace std;
+
 //方法一：动态规划，同斐波那契数列
 
 //方法二：备忘录的递归：如下

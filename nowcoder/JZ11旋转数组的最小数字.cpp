@@ -1,4 +1,5 @@
-
+#include<vector>
+using namespace std;
 //找到旋转数组的最小数字
 
 //暴力
