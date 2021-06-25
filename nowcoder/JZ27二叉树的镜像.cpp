@@ -40,3 +40,16 @@ TreeNode* Mirror(TreeNode* pRoot) {
     return pRoot;
 }
 
+//力扣的题解
+//后序遍历
+class Solution {
+public:
+    TreeNode* mirrorTree(TreeNode* root) {
+        if(root  == nullptr) return nullptr;
+        root -> right = mirrorTree(root -> right);
+        root -> left =  mirrorTree(root -> left);
+        //交换两个变量的值
+        std::swap(root -> left, root -> right);
+        return root;
+    }
+};
