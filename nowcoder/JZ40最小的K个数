@@ -1,0 +1,41 @@
+取出数组中最小的k个数
+
+// //排序取前k个数
+// class Solution {
+// public:
+//     vector<int> getLeastNumbers(vector<int>& arr, int k) {
+//         int  n =  arr.size();
+        
+//         sort(arr.begin(), arr.end());
+//         vector<int> result(arr.begin(), arr.begin()+k);
+//         return result;
+//     }
+// };
+
+// //使用大根堆
+// class Solution {
+// public:
+//     vector<int> getLeastNumbers(vector<int>& arr, int k) {
+//         vector<int> result(k);
+//         int n = arr.size();
+//         if(k == 0) return {};
+//         if(n == k) return arr;
+//         priority_queue<int> pri_que;
+//         for(int i= 0; i< k; i++) {
+//             pri_que.push(arr[i]);
+//         }
+//         for(int i = k; i< n; i++) {
+//             if(arr[i] < pri_que.top()) {
+//                 pri_que.pop();
+//                 pri_que.push(arr[i]);
+//             }
+//         }
+//         for(int i = 0; i< k; i++) {
+//             result[i] = pri_que.top();
+//             pri_que.pop();
+//         }
+//         return result;
+//     }
+// };
+
+使用快排的思想：
