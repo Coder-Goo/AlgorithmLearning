@@ -1,0 +1,8 @@
+这一题和上一题相对比，
+查找所有员工的last_name和first_name以及部门编号dept_no，包括么有分配具体部门的员工，那么查询的是两个表中的信息
+而且需要包括salaries的全部信息，那么就是salaries是主表，用左连接
+
+
+select last_name, first_name, dept_no
+from employees e
+left join dept_emp d on e.emp_no = d.emp_no;

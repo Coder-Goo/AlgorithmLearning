@@ -1,0 +1,16 @@
+ 查找薪水记录超过15次的员工号emp_no以及其对应的记录次数t
+
+ 如何添加记录次数t字段？
+ 答：count(emp_no) as t
+
+
+ 第一次写
+ select emp_no, count(emp_no) as t
+ from salaries
+ where t > 15;
+
+ 应该用分组+聚合函数的
+select emp_no, count(emp_no) as t
+from salaries
+group by emp_no
+having t> 15;

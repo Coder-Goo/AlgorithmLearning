@@ -1,0 +1,12 @@
+查找所有已经分配部门的员工的last_name 和first_name以及dept_no
+
+这一题查取的是两个表中的公共部分，应该使用内连接
+
+select last_name, first_name, dept_no
+from employees e
+join dept_emp d on e.emp_no = d.emp_no;
+
+
+
+关于连接：
+https://www.liaoxuefeng.com/wiki/1177760294764384/1179610888796448
