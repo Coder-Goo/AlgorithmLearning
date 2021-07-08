@@ -1,0 +1,8 @@
+获取所有的员工和对应的经理，如果员工本身是经理的话不显示？
+
+如果员工本身是经理不显示？ 如何排除
+
+select e.emp_no, m.emp_no as manager
+from dept_emp e
+join dept_manager m on e.dept_no = m.dept_no
+where e.emp_no <> m.emp_no;                 //

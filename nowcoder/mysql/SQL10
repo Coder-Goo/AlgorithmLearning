@@ -1,9 +1,17 @@
 找出一个表里有，另一个表里没有的员工信息
 
-not in 子查询
-
+方法一： not in 子查询
 
 SELECT emp_no
 from employees
 where emp_no not in 
 (select emp_no from dept_manager);
+
+
+方法二： 左连接找出不在左连接中的数据
+SELECT e.emp_no
+from employees e
+left join dept_manager d on e.emp_no = d.emp_no
+where dept_no IS NULL;
+
+通过左连接获得主表中所有数据，并取出dept_no is NULL即是所求的值
