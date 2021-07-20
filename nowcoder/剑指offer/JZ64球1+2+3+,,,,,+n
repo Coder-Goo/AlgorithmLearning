@@ -1,0 +1,14 @@
+不用乘除，if，while,for等判断语句来实现1+2+3+，，，，
+
+```cpp
+class Solution {
+public:
+    int sumNums(int n) {
+        n && (n += sumNums(n-1));
+        return n;
+    }
+};
+
+```
+
+还可以使用加减构造函数，，

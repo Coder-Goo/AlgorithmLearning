@@ -1,0 +1,23 @@
+股票的最大利润：只能买卖一次
+
+那么就是在最低点买，最高点卖
+
+那么我们就记录一个最低点min,  每天计算今天卖出的利润prefix = price[i] - min;
+那我们需要判断今天的利润和历史相比是不是最大，取最大： dp[i] =  max(prefix， max)?  
+
+```cpp
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int min_price = INT_MAX;
+        int prefix = 0;
+        for(int i = 0; i< prices.size(); i++) {
+            min_price = min(min_price, prices[i]);
+            prefix = max(prefix, prices[i] - min_price);
+        }
+        return prefix;
+    }
+
+};
+
+```
