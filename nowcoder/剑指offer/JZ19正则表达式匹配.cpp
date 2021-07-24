@@ -13,7 +13,7 @@ public:
         }
         //开始动态规划
         for(int i = 1; i<= m; i++) {
-            for(int j = 1; j<= n; j++) {
+            for(int j = 1; j<= n; j++) {Z
 
                 if(p[j -1] == '*') {
                     if( j == 1) dp[i][j] == false;//正则字符串第一个就是*，那么肯定是不匹配
