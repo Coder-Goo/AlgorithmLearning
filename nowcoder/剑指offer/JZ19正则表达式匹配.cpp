@@ -20,11 +20,10 @@ public:
                     if(j-2>=0 && p[j-2] == s[i-1] || p[j-2] == '.') dp[i][j] = dp[i-1][j];
                     else dp[i][j] = dp[i][j-2];
                 }
-                else {
+                else {-
                     if(s[i-1] == p[j-1] || p[j-1] == '.') dp[i][j] = dp[i-1][j-1];
                     else dp[i][j] = false;
                 }
-
             }
         }
         return dp[m][n];
