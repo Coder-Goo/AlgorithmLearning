@@ -13,14 +13,14 @@ public:
         }
         //开始动态规划
         for(int i = 1; i<= m; i++) {
-            for(int j = 1; j<= n; j++) {Z
+            for(int j = 1; j<= n; j++) {
 
                 if(p[j -1] == '*') {
-                    if( j == 1) dp[i][j] == false;//正则字符串第一个就是*，那么肯定是不匹配
+                    if( j == 1) dp[i][j] = false;//正则字符串第一个就是*，那么肯定是不匹配
                     if(j-2>=0 && p[j-2] == s[i-1] || p[j-2] == '.') dp[i][j] = dp[i-1][j];
                     else dp[i][j] = dp[i][j-2];
                 }
-                else {-
+                else {
                     if(s[i-1] == p[j-1] || p[j-1] == '.') dp[i][j] = dp[i-1][j-1];
                     else dp[i][j] = false;
                 }
@@ -52,3 +52,62 @@ public:
 //空串和非空正则    需要判断是否匹配：如“”和“a*b*”是在j=2和4的时候是匹配的,此时分为有*和无*
        //1.有* ，那么直接去掉*和*前一个字符即a*，即dp[0][j] = dp[0][j-2];
        //2. 没有*，那么肯定不匹配
+
+```cpp 
+//递归写法
+class solution {
+    bool matchcore(int a,int b){
+        if(A[a]==0&&B[b]==0)return true;
+        if(A[a]!=0&&B[b]==0)return false;
+        if(B[b+1]=='*'){
+            if(A[a]==B[b]||(B[b]=='.'&&A[a]!=0))
+               return matchcore(a+1,b)||matchcore(a+1,b+2)||matchcore(a,b+2);//多个，一个，0个
+            else return matchcore(a,b+2);
+        }
+        else if(A[a]==B[b]||(B[b]=='.'&&A[a]!=0))
+            return matchcore(a+1,b+1);//一个
+        return false;
+    }
+    string A;
+    string B;
+
+public:
+    bool match(string str, string pattern) {
+        A=str;
+        B=pattern;
+       return matchcore(0, 0);
+    }
+
+};
+
+
+//动态规划写法：
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        int m = s.size();
+        int n = p.size();
+
+        vector<vector<bool>>dp(m+1, vector<bool>(n+1, false));
+        //初始条件
+        dp[0][0] = true;
+
+        for(int i = 1; i<= m; i++ ) {
+            for(int j = 1; j<= n; j++) {  //i,j表示字符串里的第i和第j个字符，与实际下标相差1
+                if(j>1 && p[j-1] == '*') {       //如果有*的情况
+                    if( p[j-2] != s[i-1] && p[j-2] != '.') //不匹配 
+                        dp[i][j] = dp[i][j-2];
+                    else {
+                        dp[i][j] = dp[i][j-2]       //匹配0次
+                                || dp[i-1][j-2]     //匹配1次
+                                || dp[i-1][j]   ;   //匹配多次
+                    }
+
+                } else if(p[j-1] == s[i-1] || p[j-1] == '.') {
+                    dp[i][j] = dp[i-1][j-1];
+                }
+            }
+        }
+        return dp[m][n];
+    }
+};
